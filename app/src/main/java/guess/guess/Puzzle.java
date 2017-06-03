@@ -31,10 +31,22 @@ public class Puzzle {
         String puzzle = "";
         int i = 0;
         for (int value : this.values) {
-            if(i < 4 || i > 7) {
-                puzzle = puzzle + String.valueOf(value) + " ";
-            }else{
-                puzzle = puzzle + "X ";
+            switch (i){
+                case 4:
+                    puzzle = puzzle + "A ";
+                    break;
+                case 5:
+                    puzzle = puzzle + "B ";
+                    break;
+                case 6:
+                    puzzle = puzzle + "C ";
+                    break;
+                case 7:
+                    puzzle = puzzle + "D ";
+                    break;
+                default:
+                    puzzle = puzzle + String.valueOf(value) + " ";
+                    break;
             }
             i++;
         }
