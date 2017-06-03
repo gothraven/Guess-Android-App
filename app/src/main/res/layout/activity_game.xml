@@ -70,28 +70,17 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <TextView
-        android:id="@+id/hint1_tv"
+        android:id="@+id/hints_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.672" />
-
-    <TextView
-        android:id="@+id/hint2_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.202"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.065"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textview" />
 
     <TextView
         android:id="@+id/textview"
@@ -105,6 +94,7 @@
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintBottom_toTopOf="@+id/hint1_tv"
         app:layout_constraintTop_toBottomOf="@+id/answer_et"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.6"
+        android:layout_marginTop="13dp" />
 
 </android.support.constraint.ConstraintLayout>

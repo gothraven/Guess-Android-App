@@ -34,16 +34,17 @@ public class Help extends AppCompatActivity {
     public void start_game(View v){
 
         showname.setText("Prepare your self, "+playername.getText()+"!!!");
-        CountDownTimer progresstimer = new CountDownTimer(5000, 1000) {
+        new CountDownTimer(3000, 1000) {
             int i = 1;
+
             public void onTick(long millisUntilFinished) {
-                progress.setProgress(i * 100 / 5);
+                progress.setProgress(i * 100 / 3);
                 i++;
             }
 
             public void onFinish() {
                 progress.setProgress(100);
-                startActivity(new Intent(Help.this,game.class));
+                startActivity(new Intent(Help.this, game.class));
                 i++;
             }
 
