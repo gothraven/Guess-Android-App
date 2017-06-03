@@ -36,7 +36,7 @@ public class Puzzle {
         this.hints = new String[4];
 
         this.hints[0] = arePrimes()+"prime number(s)";
-        this.hints[1] = areEven()+"even nummber(s)";
+        this.hints[1] = areEven()+"even number(s)";
         this.hints[2] = biggest()+"is the biggest number";
         this.hints[3] = smallest()+"is the smallest number";
     }

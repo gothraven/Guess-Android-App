@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.System.exit;
+
 public class Help extends AppCompatActivity {
     private ProgressBar progress;
     private EditText playername;
@@ -32,8 +34,13 @@ public class Help extends AppCompatActivity {
     }
 
     public void start_game(View v){
-
-        showname.setText("Prepare your self, "+playername.getText()+"!!!");
+        String name = playername.getText().toString();
+        if(name.equals("")) {
+            showname.setText("please specify your name!!!");
+            return;
+        }else {
+            showname.setText("Prepare your self, " + name + "!!!");
+        }
         new CountDownTimer(3000, 1000) {
             int i = 1;
 
