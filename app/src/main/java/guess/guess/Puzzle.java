@@ -15,6 +15,7 @@ public class Puzzle {
     private String hints[];
     private int unknown;
 
+
     public Puzzle(int unknown){
 
         Random generator = new Random();
@@ -105,7 +106,7 @@ public class Puzzle {
                 index = i;
             }
         }
-        return "X("+index+") ";
+        return "X("+(index+1)+") ";
     }
 
     private String smallest(){
@@ -117,10 +118,19 @@ public class Puzzle {
                 index = i;
             }
         }
-        return "X("+index+") ";
+        return "X("+(index+1)+") ";
     }
 
     public int getUnknown() {
         return unknown;
     }
+
+    public String getAnswer(){
+        String answer = "";
+        for (int i = 1; i <this.unknown ; i++) {
+            answer += this.values[i];
+        }
+        return answer;
+    }
+
 }

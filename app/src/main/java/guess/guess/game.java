@@ -40,10 +40,10 @@ public class game extends AppCompatActivity {
 
         puzzle_init();
 
-        chrono = new CountDownTimer(60000, 1000) {
+        chrono = new CountDownTimer(100000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                time.setText("00:" + millisUntilFinished / 1000);
+                time.setText(millisUntilFinished / 1000+"s");
             }
 
             public void onFinish() {
@@ -57,7 +57,7 @@ public class game extends AppCompatActivity {
 
     public void check_answer(View v){
         String input = answer.getText().toString();
-        if(input.length() != puzzle.getUnknown()){
+        if(input.length() != puzzle.getUnknown() && input.equals(puzzle.getAnswer())){
             status.setText("WRRONNNGGG!!!!!");
         }else{
             status.setText("");
@@ -68,7 +68,7 @@ public class game extends AppCompatActivity {
 
     private void next_puzzle(){
         puzzle = null;
-        puzzle = new Puzzle(unknown.nextInt(10));
+        puzzle = new Puzzle(unknown.nextInt(5));
         puzzle_tv.setText(puzzle.toString());
         hints.setText(puzzle.getHints());
         chrono.cancel();
@@ -82,7 +82,7 @@ public class game extends AppCompatActivity {
 
     private void puzzle_init(){
         time.setText("START!");
-        puzzle = new Puzzle(unknown.nextInt(10));
+        puzzle = new Puzzle(unknown.nextInt(5));
         puzzle_tv.setText(puzzle.toString());
         hints.setText(puzzle.getHints());
     }
