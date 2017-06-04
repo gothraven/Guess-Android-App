@@ -13,38 +13,34 @@ import java.util.Random;
 
 public class game extends AppCompatActivity {
     private TextView time;
-    private TextView puzzle;
+    private TextView puzzle_tv;
     private TextView hints;
+    private TextView status;
+    private TextView score_show;
     private Random unknown;
     private EditText answer;
-    private Button check;
-    private Puzzle phone_number;
+    private Puzzle puzzle;
+    private int score;
+    private CountDownTimer chrono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         time = (TextView) findViewById(R.id.chrono_tv);
-        puzzle = (TextView) findViewById(R.id.puzzle_tv);
+        puzzle_tv = (TextView) findViewById(R.id.puzzle_tv);
         hints = (TextView) findViewById(R.id.hints_tv);
         answer = (EditText) findViewById(R.id.answer_et);
-        check = (Button) findViewById(R.id.check_btn);
+        status = (TextView) findViewById(R.id.status_tv);
+        score_show = (TextView) findViewById(R.id.score_tv);
         unknown = new Random();
-        phone_number = new Puzzle(unknown.nextInt(10));
-        start_time();
-    }
 
-    public void check_answer(View v){
-        answer.animate();
-    }
+        score = 0;
+        score_show.setText("Score : "+score);
 
-    private void start_time(){
-        time.setText("START!");
-        puzzle.setText(phone_number.toString());
-        hints.setText(phone_number.getHints());
+        puzzle_init();
 
-
-        new CountDownTimer(60000, 1000) {
+        chrono = new CountDownTimer(60000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 time.setText("00:" + millisUntilFinished / 1000);
@@ -56,5 +52,38 @@ public class game extends AppCompatActivity {
             }
 
         }.start();
+
+    }
+
+    public void check_answer(View v){
+        String input = answer.getText().toString();
+        if(input.length() != puzzle.getUnknown()){
+            status.setText("WRRONNNGGG!!!!!");
+        }else{
+            status.setText("");
+            update_score();
+            next_puzzle();
+        }
+    }
+
+    private void next_puzzle(){
+        puzzle = null;
+        puzzle = new Puzzle(unknown.nextInt(10));
+        puzzle_tv.setText(puzzle.toString());
+        hints.setText(puzzle.getHints());
+        chrono.cancel();
+        chrono.start();
+    }
+
+    private void update_score(){
+        score+=132*puzzle.getUnknown();
+        score_show.setText("Score : "+score);
+    }
+
+    private void puzzle_init(){
+        time.setText("START!");
+        puzzle = new Puzzle(unknown.nextInt(10));
+        puzzle_tv.setText(puzzle.toString());
+        hints.setText(puzzle.getHints());
     }
 }

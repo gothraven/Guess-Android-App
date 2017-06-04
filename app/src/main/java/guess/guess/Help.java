@@ -21,6 +21,8 @@ public class Help extends AppCompatActivity {
     private ProgressBar progress;
     private EditText playername;
     private TextView showname;
+    int score;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class Help extends AppCompatActivity {
         playername = (EditText) findViewById(R.id.playername_tx);
         showname = (TextView) findViewById(R.id.name_tv);
         progress.setProgress(0);
+        score = 0;
 
 
     }

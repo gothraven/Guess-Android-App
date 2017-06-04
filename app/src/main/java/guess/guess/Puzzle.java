@@ -119,4 +119,8 @@ public class Puzzle {
         }
         return "X("+index+") ";
     }
+
+    public int getUnknown() {
+        return unknown;
+    }
 }
