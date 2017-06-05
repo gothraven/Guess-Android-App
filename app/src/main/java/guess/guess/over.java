@@ -18,6 +18,7 @@ public class over extends AppCompatActivity {
 
     public void restart(View v){
         startActivity(new Intent(over.this,game.class));
+        finish();
     }
 }
 

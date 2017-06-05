@@ -134,7 +134,7 @@
         android:onClick="show_answer"
         android:text=""
         android:textSize="15dp"
-        android:visibility="w"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -54,6 +54,7 @@ public class game extends AppCompatActivity {
             public void onFinish() {
                 time.setText("Done!");
                 startActivity(new Intent(game.this,over.class));
+                finish();
             }
 
         }.start();

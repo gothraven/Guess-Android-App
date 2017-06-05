@@ -56,6 +56,7 @@ public class Help extends AppCompatActivity {
             public void onFinish() {
                 progress.setProgress(100);
                 startActivity(new Intent(Help.this, game.class));
+                finish();
                 i++;
             }
 
