@@ -38,8 +38,16 @@ public class Puzzle {
 
         this.hints[0] = arePrimes()+"prime number(s)";
         this.hints[1] = areEven()+"even number(s)";
-        this.hints[2] = biggest()+"is the biggest number";
-        this.hints[3] = smallest()+"is the smallest number";
+        if(this.unknown > 1) {
+            this.hints[2] = biggest() + "is the biggest unknown";
+        }else{
+            this.hints[2] = "";
+        }
+        if(this.unknown > 2) {
+            this.hints[3] = smallest() + "is the smallest unknown";
+        }else{
+            this.hints[3] = "";
+        }
     }
 
     public String toString(){
@@ -61,7 +69,8 @@ public class Puzzle {
     }
 
     private boolean isPrime(int value){
-        for (int i = 2; i <value/2 ; i++) {
+        if (value == 1 || value == 0) return false;
+        for (int i = 2; i <= value/2 ; i++) {
             if(value % i == 0)
                 return false;
         }
@@ -70,9 +79,9 @@ public class Puzzle {
 
     private String arePrimes(){
         String primes = "";
-        for (int i = 1; i <this.unknown ; i++) {
+        for (int i = 1; i <= this.unknown ; i++) {
             if(isPrime(this.values[i])){
-                primes = primes + "X("+(i+1)+") ";
+                primes = primes + "X("+i+") ";
             }
         }
         if(primes.equals("")) {
@@ -84,9 +93,9 @@ public class Puzzle {
 
     private String areEven(){
         String even = "";
-        for (int i = 1; i <this.unknown ; i++) {
+        for (int i = 1; i <= this.unknown ; i++) {
             if(this.values[i] % 2 == 0){
-                even = even + "X("+(i+1)+") ";
+                even = even + "X("+i+") ";
             }
         }
         if(even.equals("")) {
@@ -100,25 +109,25 @@ public class Puzzle {
     private String biggest(){
         int max = this.values[1];
         int index = 1;
-        for (int i = 1; i < this.unknown; i++) {
+        for (int i = 1; i <= this.unknown; i++) {
             if (this.values[i] > max) {
                 max = this.values[i];
                 index = i;
             }
         }
-        return "X("+(index+1)+") ";
+        return "X("+(index)+") ";
     }
 
     private String smallest(){
         int min = this.values[1];
-        int index = 0;
-        for (int i = 1; i < this.unknown; i++) {
+        int index = 1;
+        for (int i = 1; i <= this.unknown; i++) {
             if (this.values[i] < min) {
                 min = this.values[i];
                 index = i;
             }
         }
-        return "X("+(index+1)+") ";
+        return "X("+(index)+") ";
     }
 
     public int getUnknown() {
@@ -127,10 +136,13 @@ public class Puzzle {
 
     public String getAnswer(){
         String answer = "";
-        for (int i = 1; i <this.unknown ; i++) {
-            answer += this.values[i];
+
+        for (int i = 1; i <= this.unknown; i++) {
+                answer += this.values[i];
         }
+
         return answer;
+
     }
 
 }

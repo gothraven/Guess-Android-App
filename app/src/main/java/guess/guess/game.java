@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -15,13 +16,15 @@ public class game extends AppCompatActivity {
     private TextView time;
     private TextView puzzle_tv;
     private TextView hints;
-    private TextView status;
     private TextView score_show;
+    private TextView status;
     private Random unknown;
     private EditText answer;
     private Puzzle puzzle;
     private int score;
     private CountDownTimer chrono;
+    private Toast toastRight;
+    private Toast toastAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,10 @@ public class game extends AppCompatActivity {
         puzzle_tv = (TextView) findViewById(R.id.puzzle_tv);
         hints = (TextView) findViewById(R.id.hints_tv);
         answer = (EditText) findViewById(R.id.answer_et);
-        status = (TextView) findViewById(R.id.status_tv);
         score_show = (TextView) findViewById(R.id.score_tv);
+        status = (TextView) findViewById(R.id.status_tv);
+        toastRight = Toast.makeText(getApplicationContext(),"RIGHTT!!",Toast.LENGTH_LONG);
+        toastRight.setDuration(1);
         unknown = new Random();
 
         score = 0;
@@ -57,10 +62,11 @@ public class game extends AppCompatActivity {
 
     public void check_answer(View v){
         String input = answer.getText().toString();
-        if(input.length() != puzzle.getUnknown() && input.equals(puzzle.getAnswer())){
-            status.setText("WRRONNNGGG!!!!!");
+        if((input.length() != puzzle.getUnknown()) || (!input.equals(puzzle.getAnswer()))){
+            status.setText("Wrong, try again!!");
         }else{
-            status.setText("");
+            status.setText("Great, here's another one");
+            toastRight.show();
             update_score();
             next_puzzle();
         }
@@ -85,5 +91,11 @@ public class game extends AppCompatActivity {
         puzzle = new Puzzle(unknown.nextInt(5));
         puzzle_tv.setText(puzzle.toString());
         hints.setText(puzzle.getHints());
+    }
+
+    public void show_answer(View v){
+        toastAnswer = Toast.makeText(getApplicationContext(),puzzle.getAnswer(),Toast.LENGTH_LONG);
+        toastAnswer.setDuration(1);
+        toastAnswer.show();
     }
 }

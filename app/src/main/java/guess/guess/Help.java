@@ -42,9 +42,10 @@ public class Help extends AppCompatActivity {
             showname.setText("please specify your name!!!");
             return;
         }else {
+            progress.setVisibility(1);
             showname.setText("Prepare your self, " + name + "!!!");
         }
-        new CountDownTimer(3000, 1000) {
+        new CountDownTimer(1000, 1000) {
             int i = 1;
 
             public void onTick(long millisUntilFinished) {
